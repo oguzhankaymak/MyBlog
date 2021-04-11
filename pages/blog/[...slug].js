@@ -1,6 +1,10 @@
+import React from 'react'
+import { useAuth0 } from '@auth0/auth0-react'
 import { getMdxNode, getMdxPaths } from 'next-mdx/server'
 
 export default function PostPage({ post }) {
+  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0()
+
   return (
     <div className="site-container">
       <article>
@@ -9,6 +13,40 @@ export default function PostPage({ post }) {
         <hr className="my-4" />
         <div className="prose">{post.content}</div>
       </article>
+
+      <form className="mt-10">
+        <textarea
+          rows="3"
+          className="border border-gray-300 rounded w-full block px-2 py-1"
+        />
+        <div className="mt-4">
+          {isAuthenticated ? (
+            <div className="flex items-center space-x-2">
+              <button className="bg-blue-600 text-white px-2 py-1 rounded">
+                Send
+              </button>
+              <img src={user.picture} width={20} className="rounded-full" />
+              <span>{user.name}</span>
+              <button
+                typeof="button"
+                onClick={() =>
+                  logout({ returnTo: process.env.NEXT_PUBLIC_URL + '/blog' })
+                }
+              >
+                X
+              </button>
+            </div>
+          ) : (
+            <button
+              className="bg-blue-600 text-white px-2 py-1 rounded"
+              typeof="button"
+              onClick={() => loginWithRedirect()}
+            >
+              Login
+            </button>
+          )}
+        </div>
+      </form>
     </div>
   )
 }
