@@ -17,7 +17,8 @@ export default function PostPage({ post }) {
       <form className="mt-10">
         <textarea
           rows="3"
-          className="border border-gray-300 rounded w-full block px-2 py-1"
+          className="textarea"
+          placeholder="Görüşlerini bizimle paylaş..."
         />
         <div className="mt-4">
           {isAuthenticated ? (
@@ -38,11 +39,11 @@ export default function PostPage({ post }) {
             </div>
           ) : (
             <button
-              className="bg-blue-600 text-white px-2 py-1 rounded"
+              className="button"
               typeof="button"
               onClick={() => loginWithRedirect()}
             >
-              Login
+              Giriş Yap
             </button>
           )}
         </div>
