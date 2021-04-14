@@ -2,7 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 @layer components {
+  html {
+    @apply bg-white text-gray-600 antialiased
+    dark:bg-gray-900 dark:text-gray-400;
+  }
+
   .site-container {
     @apply max-w-2xl mx-auto px-6;
   }

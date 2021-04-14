@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import Head from 'next/head'
 import Header from '../components/header'
 import { Auth0Provider } from '@auth0/auth0-react'
 
@@ -10,12 +11,16 @@ function MyApp({ Component, pageProps }) {
       clientId=""
       redirectUri={process.env.NEXT_PUBLIC_URL}
     >
-      <div className="antialiased text-gray-700">
+      <html className="h-screen">
+        <Head>
+          <title>Oğuzhan Kaymak</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+        </Head>
         <Header />
         <main className="mt-6 mb-20">
           <Component {...pageProps} />
         </main>
-      </div>
+      </html>
     </Auth0Provider>
   )
 }

@@ -9,9 +9,9 @@ export default function PostPage({ post }) {
     <div className="site-container">
       <article>
         <h1 className="text-4xl font-bold">{post.frontMatter.title}</h1>
-        <p>{post.frontMatter.excerpt}</p>
-        <hr className="my-4" />
-        <div className="prose">{post.content}</div>
+        <div className="prose mt-4 text-gray-600 antialiase dark:text-gray-400">
+          {post.content}
+        </div>
       </article>
 
       <form className="mt-10">
