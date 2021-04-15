@@ -1,0 +1,11 @@
+.imageCard {
+  @apply flex items-center flex-col border dark:border-gray-600 rounded-lg mb-4 ml-2;
+}
+
+.container {
+  @apply pt-6 md:p-8 text-center md:text-left space-y-4;
+}
+
+.description {
+  @apply text-lg font-semibold;
+}
