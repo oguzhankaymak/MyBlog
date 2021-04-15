@@ -1,7 +1,7 @@
 function HomePage() {
   return (
     <div className="site-container">
-      <div className="space-y-4">
+      <div className="h-screen space-y-4">
         <div className="flex justify-center">
           <img
             className="rounded-full flex shadow-lg transform hover:scale-125 motion-reduce:transform-none"

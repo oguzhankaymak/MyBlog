@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
       clientId=""
       redirectUri={process.env.NEXT_PUBLIC_URL}
     >
-      <html className="h-screen">
+      <html className="h-full">
         <Head>
           <title>Oğuzhan Kaymak</title>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
