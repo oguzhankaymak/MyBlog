@@ -6,7 +6,7 @@ export default function PostPage({ post }) {
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0()
 
   return (
-    <div className="site-container">
+    <div className="site-container h-screen">
       <article>
         <h1 className="text-4xl font-bold">{post.frontMatter.title}</h1>
         <div className="prose mt-4 text-gray-600 antialiase dark:text-gray-400">

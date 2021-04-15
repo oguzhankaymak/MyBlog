@@ -3,7 +3,7 @@ import { getAllNodes } from 'next-mdx/server'
 
 function BlogPage({ posts }) {
   return (
-    <div className="site-container">
+    <div className="site-container h-screen">
       <div className="space-y-4">
         {posts.map((post) => (
           <article key={post.url}>
