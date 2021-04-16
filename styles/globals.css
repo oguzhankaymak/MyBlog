@@ -18,6 +18,10 @@
     @apply max-w-2xl mx-auto px-6;
   }
 
+  .site-cards {
+    @apply max-w-4xl mx-auto px-6;
+  }
+
   .textarea {
     @apply flex
     w-full

@@ -11,16 +11,14 @@ function MyApp({ Component, pageProps }) {
       clientId=""
       redirectUri={process.env.NEXT_PUBLIC_URL}
     >
-      <html className="h-full">
-        <Head>
-          <title>Oğuzhan Kaymak</title>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-        </Head>
-        <Header />
-        <main className="mt-6 mb-20">
-          <Component {...pageProps} />
-        </main>
-      </html>
+      <Head>
+        <title>Oğuzhan Kaymak</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+      <Header />
+      <main className="mt-6 mb-20">
+        <Component {...pageProps} />
+      </main>
     </Auth0Provider>
   )
 }
