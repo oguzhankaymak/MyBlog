@@ -1,5 +1,5 @@
 .imageCard {
-  @apply flex items-center flex-col border dark:border-gray-600 rounded-lg mb-4 ml-2;
+  @apply flex items-center flex-col border-gray-400 dark:border-red-400 rounded-lg mb-4 ml-2;
 }
 
 .container {
