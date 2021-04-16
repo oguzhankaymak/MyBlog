@@ -3,14 +3,14 @@ import styles from './imageCard.module.css'
 
 export default function ImageCard({ image, text }) {
   return (
-    <div class={styles.imageCard}>
-      <img src={image} alt="image" />
-      <div class={styles.container}>
+    <div className={styles.imageCard}>
+      <img className="object-cover h-80 w-full" src={image} alt="image" />
+      <div className={styles.container}>
         <blockquote>
-          <p class={styles.description}>“{text}”</p>
+          <p className={styles.description}>“{text}”</p>
         </blockquote>
-        <button class="font-medium">
-          <div class="text-gray-500 hover:underline">Daha Fazlası...</div>
+        <button className="font-medium">
+          <div className="text-gray-500 hover:underline">Daha Fazlası...</div>
         </button>
       </div>
     </div>
