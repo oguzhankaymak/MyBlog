@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function Header() {
   return (
-    <header className="flex flex-row justify-between items-center site-container py-6">
+    <header className="flex justify-center md:justify-start items-center site-container py-6">
       <nav className="space-x-4">
         <Link href="/">
           <a>Hakkımda</a>

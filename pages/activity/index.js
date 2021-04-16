@@ -5,7 +5,7 @@ import ImageCard from '../../components/imageCard/imageCard'
 
 function ActivityPage({ activities }) {
   return (
-    <div className="flex max-w-6xl mx-auto">
+    <div className="flex max-w-5xl mx-auto">
       <div className="grid border border-transparent md:grid-cols-2 sm:grid-cols-1">
         {activities.map((activity, index) => (
           <ImageCard
