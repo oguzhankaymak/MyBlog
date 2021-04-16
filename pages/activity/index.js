@@ -4,11 +4,10 @@ import { getAllNodes } from 'next-mdx/server'
 import ImageCard from '../../components/imageCard/imageCard'
 
 function ActivityPage({ activities }) {
-  console.log(activities)
   return (
-    <div className="site-cards">
+    <div className="flex max-w-6xl mx-auto">
       <div className="grid border border-transparent md:grid-cols-2 sm:grid-cols-1">
-        {activities.map((activity) => (
+        {activities.map((activity, index) => (
           <ImageCard
             text={activity.frontMatter.excerpt}
             image={activity.frontMatter.image}
