@@ -11,7 +11,9 @@ function ActivityPage({ activities }) {
           <ImageCard
             text={activity.frontMatter.excerpt}
             image={activity.frontMatter.image}
+            date={activity.frontMatter.showDate}
             key={activity.url}
+            url={activity.url}
           />
         ))}
       </div>
