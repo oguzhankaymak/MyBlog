@@ -1,9 +1,39 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import { getMdxNode, getMdxPaths } from 'next-mdx/server'
 
 export default function PostPage({ post }) {
-  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0()
+  const {
+    loginWithRedirect,
+    logout,
+    isAuthenticated,
+    user,
+    getAccessTokenSilently
+  } = useAuth0()
+
+  const [text, setText] = useState('')
+  const [url, setUrl] = useState(null)
+
+  useEffect(() => {
+    const url = window.location.origin + window.location.pathname
+    setUrl(url)
+  }, [])
+
+  const onSubmit = async (e) => {
+    e.preventDefault()
+
+    const userToken = await getAccessTokenSilently()
+
+    const reponse = await fetch('/api/comment', {
+      method: 'POST',
+      body: JSON.stringify({ text, userToken, url }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    const data = await reponse.json()
+  }
 
   return (
     <div className="site-container h-screen">
@@ -14,8 +44,9 @@ export default function PostPage({ post }) {
         </div>
       </article>
 
-      <form className="mt-10">
+      <form className="mt-10" onSubmit={onSubmit}>
         <textarea
+          onChange={(e) => setText(e.target.value)}
           rows="3"
           className="textarea"
           placeholder="Görüşlerini bizimle paylaş..."
@@ -24,7 +55,7 @@ export default function PostPage({ post }) {
           {isAuthenticated ? (
             <div className="flex items-center space-x-2">
               <button className="bg-blue-600 text-white px-2 py-1 rounded">
-                Send
+                Gönder
               </button>
               <img src={user.picture} width={20} className="rounded-full" />
               <span>{user.name}</span>

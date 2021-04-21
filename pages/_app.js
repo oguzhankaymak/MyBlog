@@ -7,8 +7,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <Auth0Provider
       //auth import detail
-      domain=""
-      clientId=""
+      domain={process.env.NEXT_PUBLIC_AUTH0_DOMAIN_ID}
+      clientId={process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID}
       redirectUri={process.env.NEXT_PUBLIC_URL}
     >
       <Head>
