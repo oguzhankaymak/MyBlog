@@ -5,7 +5,12 @@ export default async function handler(req, res) {
   if (req.method === 'POST') {
     const { url, userToken, text } = req.body
 
-    if (!url || !userToken || !text) {
+    if (
+      !url ||
+      !userToken ||
+      !text ||
+      !url.includes(process.env.NEXT_PUBLIC_URL + '/blog')
+    ) {
       return res.status(400).json({ message: 'Parametreler eksik veya hatalı' })
     }
 

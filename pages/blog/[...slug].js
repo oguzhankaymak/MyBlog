@@ -5,13 +5,7 @@ import Form from '../../components/form/form'
 import Comments from '../../components/comments/comments'
 
 export default function PostPage({ post }) {
-  const {
-    loginWithRedirect,
-    logout,
-    isAuthenticated,
-    user,
-    getAccessTokenSilently
-  } = useAuth0()
+  const { getAccessTokenSilently } = useAuth0()
 
   const [text, setText] = useState('')
   const [url, setUrl] = useState(null)
@@ -34,19 +28,27 @@ export default function PostPage({ post }) {
         method: 'GET'
       })
 
-      const data = await response.json()
-      setComments(data)
+      if (response.status === 200) {
+        const data = await response.json()
+        setComments(data)
+      }
     }
   }
 
   const onSubmit = async (e) => {
     e.preventDefault()
 
+    var comment = text.trim()
+
+    if (!comment || comment.length === 0) {
+      return alert('Lütfen Yorumunuzu Giriniz...')
+    }
+
     const userToken = await getAccessTokenSilently()
 
-    await fetch('/api/comment', {
+    const response = await fetch('/api/comment', {
       method: 'POST',
-      body: JSON.stringify({ text, userToken, url }),
+      body: JSON.stringify({ text: comment, userToken, url }),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -54,6 +56,10 @@ export default function PostPage({ post }) {
 
     fetchComment()
     setText('')
+
+    if (response.status !== 200) {
+      alert('Bir hata oluştu lütfen daha sonra tekrar deneyin!')
+    }
   }
 
   return (
