@@ -10,6 +10,7 @@ export default function PostPage({ post }) {
   const [text, setText] = useState('')
   const [url, setUrl] = useState(null)
   const [comments, setComments] = useState([])
+  const [loadingComments, setLoadingComments] = useState(false)
 
   useEffect(() => {
     fetchComment()
@@ -22,6 +23,7 @@ export default function PostPage({ post }) {
 
   const fetchComment = async () => {
     if (url) {
+      setLoadingComments(true)
       const query = new URLSearchParams({ url })
       const newUrl = `/api/comment?${query.toString()}`
       const response = await fetch(newUrl, {
@@ -32,6 +34,7 @@ export default function PostPage({ post }) {
         const data = await response.json()
         setComments(data)
       }
+      setLoadingComments(false)
     }
   }
 
@@ -72,7 +75,7 @@ export default function PostPage({ post }) {
       </article>
 
       <Form onSubmit={onSubmit} text={text} setText={setText} />
-      <Comments comments={comments} />
+      <Comments comments={comments} loading={loadingComments} />
     </div>
   )
 }
