@@ -36,13 +36,11 @@ export default async function handler(req, res) {
   }
 
   //FETCH
-  if (req.method === 'GET') {
+  else if (req.method === 'GET') {
+    const { url } = req.query
+
     const redis = new Redis(process.env.REDIS_URL)
-    const comments = await redis.lrange(
-      'http://localhost:3000/blog/yazi-1',
-      0,
-      -1
-    )
+    const comments = await redis.lrange(url, 0, -1)
     redis.quit()
 
     const data = comments.map((res) => JSON.parse(res))
