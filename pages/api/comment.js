@@ -9,7 +9,7 @@ export default async function handler(req, res) {
       !url ||
       !userToken ||
       !text ||
-      !url.includes(process.env.NEXT_PUBLIC_URL + '/blog')
+      !url.startsWith(process.env.NEXT_PUBLIC_URL + '/blog')
     ) {
       return res.status(400).json({ message: 'Parametreler eksik veya hatalı' })
     }
@@ -43,6 +43,12 @@ export default async function handler(req, res) {
   //FETCH
   else if (req.method === 'GET') {
     const { url } = req.query
+
+    if (!url.startsWith(process.env.NEXT_PUBLIC_URL + '/blog')) {
+      return res
+        .status(400)
+        .json({ message: 'Yorumlar yüklenirken bir hata oluştu!' })
+    }
 
     const redis = new Redis(process.env.REDIS_URL)
     const comments = await redis.lrange(url, 0, -1)
