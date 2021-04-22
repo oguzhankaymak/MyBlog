@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import { getMdxNode, getMdxPaths } from 'next-mdx/server'
+import { useHydrate } from 'next-mdx/client'
+import { mdxComponents } from '../../components/mdxComponents/mdx-componets'
 import Form from '../../components/form/form'
 import Comments from '../../components/comments/comments'
 
@@ -11,6 +13,10 @@ export default function PostPage({ post }) {
   const [url, setUrl] = useState(null)
   const [comments, setComments] = useState([])
   const [loadingComments, setLoadingComments] = useState(false)
+
+  const content = useHydrate(post, {
+    components: mdxComponents
+  })
 
   useEffect(() => {
     fetchComment()
@@ -70,7 +76,7 @@ export default function PostPage({ post }) {
       <article>
         <h1 className="text-4xl font-bold">{post.frontMatter.title}</h1>
         <div className="prose mt-4 text-gray-600 antialiase dark:text-gray-400">
-          {post.content}
+          {content}
         </div>
       </article>
 
