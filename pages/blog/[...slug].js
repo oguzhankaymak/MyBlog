@@ -1,75 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import { useAuth0 } from '@auth0/auth0-react'
+import React, { useState } from 'react'
 import { getMdxNode, getMdxPaths } from 'next-mdx/server'
 import { useHydrate } from 'next-mdx/client'
 import { mdxComponents } from '../../components/mdxComponents/mdx-componets'
 import Form from '../../components/form/form'
 import Comments from '../../components/comments/comments'
+import UseComment from '../../hooks/useComment'
 
 export default function PostPage({ post }) {
-  const { getAccessTokenSilently } = useAuth0()
-
-  const [text, setText] = useState('')
-  const [url, setUrl] = useState(null)
-  const [comments, setComments] = useState([])
-  const [loadingComments, setLoadingComments] = useState(false)
+  const [comments, loadingComments, onSubmit, text, setText] = UseComment()
 
   const content = useHydrate(post, {
     components: mdxComponents
   })
-
-  useEffect(() => {
-    fetchComment()
-  }, [url])
-
-  useEffect(() => {
-    const url = window.location.origin + window.location.pathname
-    setUrl(url)
-  }, [])
-
-  const fetchComment = async () => {
-    if (url) {
-      setLoadingComments(true)
-      const query = new URLSearchParams({ url })
-      const newUrl = `/api/comment?${query.toString()}`
-      const response = await fetch(newUrl, {
-        method: 'GET'
-      })
-
-      if (response.status === 200) {
-        const data = await response.json()
-        setComments(data)
-      }
-      setLoadingComments(false)
-    }
-  }
-
-  const onSubmit = async (e) => {
-    e.preventDefault()
-
-    var comment = text.trim()
-
-    if (!comment || comment.length === 0) {
-      return alert('Lütfen Yorumunuzu Giriniz...')
-    }
-
-    const userToken = await getAccessTokenSilently()
-
-    const response = await fetch('/api/comment', {
-      method: 'POST',
-      body: JSON.stringify({ text: comment, userToken, url }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-
-    fetchComment()
-    setText('')
-
-    if (response.status !== 200) {
-      alert('Bir hata oluştu lütfen daha sonra tekrar deneyin!')
-    }
-  }
 
   return (
     <div className="site-container h-screen">
