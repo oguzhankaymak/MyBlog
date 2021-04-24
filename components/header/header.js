@@ -5,13 +5,19 @@ export default function Header() {
     <header className="flex justify-center md:justify-start items-center site-container py-6">
       <nav className="space-x-4">
         <Link href="/">
-          <a>Hakkımda</a>
+          <a className="hover:text-secondary text-xl font-serif font-medium">
+            Hakkımda
+          </a>
         </Link>
         <Link href="/activity">
-          <a>Etkinlikler</a>
+          <a className="hover:text-secondary text-xl font-serif font-medium">
+            Etkinlikler
+          </a>
         </Link>
         <Link href="/blog">
-          <a>Blog</a>
+          <a className="hover:text-secondary text-xl font-serif font-medium">
+            Blog
+          </a>
         </Link>
       </nav>
     </header>
