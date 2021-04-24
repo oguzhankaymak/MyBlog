@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function ImageCard({ image, text, url, date }) {
   return (
-    <div className="flex flex-col border border-gray-400 dark:border-gray-600 rounded-2xl m-4">
+    <div className="flex flex-col border border-gray-400 rounded-2xl m-4">
       <img
         className="object-cover h-80 w-full rounded-xl"
         src={image}

@@ -10,12 +10,11 @@
 
 @layer components {
   html {
-    @apply bg-white text-gray-600 antialiased
-    dark:bg-gray-900 dark:text-gray-400;
+    @apply bg-white text-gray-600 antialiased;
   }
 
   .site-container {
-    @apply max-w-3xl mx-auto px-6;
+    @apply max-w-4xl mx-auto px-6;
   }
 
   .textarea {
@@ -33,11 +32,7 @@
     focus:ring-2
     focus:ring-blue-600
     focus:outline-none
-    focus:bg-gray-200
-  
-    dark:bg-gray-500
-    dark:placeholder-gray-900
-    dark:focus:bg-gray-300;
+    focus:bg-gray-200;
   }
 
   .button {

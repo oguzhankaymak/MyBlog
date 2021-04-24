@@ -14,12 +14,10 @@ export default function PostPage({ post }) {
   })
 
   return (
-    <div className="site-container h-screen">
+    <div className="site-container">
       <article>
         <h1 className="text-4xl font-bold">{post.frontMatter.title}</h1>
-        <div className="prose mt-4 text-gray-600 antialiase dark:text-gray-400">
-          {content}
-        </div>
+        <div className="prose-xl mt-4">{content}</div>
       </article>
 
       <Form onSubmit={onSubmit} text={text} setText={setText} />

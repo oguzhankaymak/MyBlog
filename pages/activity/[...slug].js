@@ -5,7 +5,7 @@ export default function ActivityPage({ activity }) {
   return (
     <div className="site-container h-screen">
       <article>
-        <div className="prose mt-4 text-gray-600 antialiase dark:text-gray-400">
+        <div className="prose mt-4 text-gray-600 antialiase">
           {activity.content}
         </div>
       </article>
