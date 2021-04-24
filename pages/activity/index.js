@@ -9,11 +9,12 @@ function ActivityPage({ activities }) {
       <div className="grid border border-transparent md:grid-cols-2 sm:grid-cols-1">
         {activities.map((activity, index) => (
           <ImageCard
+            title={activity.frontMatter.title}
             text={activity.frontMatter.excerpt}
             image={activity.frontMatter.image}
             date={activity.frontMatter.showDate}
             key={activity.url}
-            url={activity.url}
+            address={activity.frontMatter.address}
           />
         ))}
       </div>

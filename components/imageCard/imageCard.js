@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-export default function ImageCard({ image, text, url, date }) {
+export default function ImageCard({ address, image, title, text, date }) {
   return (
     <div className="flex flex-col border border-gray-400 rounded-2xl m-4">
       <img
@@ -10,8 +10,8 @@ export default function ImageCard({ image, text, url, date }) {
         alt="image"
       />
       <div className="px-4 py-6">
-        <Link href={url}>
-          <a className="text-xl font-bold hover:underline">Kodlama Eğitimi</a>
+        <Link href={address}>
+          <a className="text-xl font-bold hover:underline">{title}</a>
         </Link>
         <div className="pt-2 text-gray-400">
           <span>{date}</span>
@@ -20,9 +20,6 @@ export default function ImageCard({ image, text, url, date }) {
           <blockquote>
             <p className="text-lg font-semibold">“{text}”</p>
           </blockquote>
-          <Link href={url}>
-            <a className="text-gray-500 hover:underline">Daha Fazlası...</a>
-          </Link>
         </div>
       </div>
     </div>
