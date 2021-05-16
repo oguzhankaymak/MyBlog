@@ -1,9 +1,11 @@
 import Pre from '../pre/pre'
 
 export const mdxComponents = {
-  h1: (props) => <h1 style={{ color: 'black' }} {...props} />,
-  h2: (props) => <h2 style={{ color: 'black' }} {...props} />,
-  h3: (props) => <h3 style={{ color: 'black' }} {...props} />,
   a: (props) => <a style={{ color: '#D46132' }} {...props} />,
+  img: (props) => (
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <img width="60%" {...props} />
+    </div>
+  ),
   pre: ({ children }) => <Pre {...children.props} />
 }
