@@ -9,7 +9,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@auth0/auth0-react": "^1.4.0",
     "@tailwindcss/typography": "^0.4.0",
     "ioredis": "^4.26.0",
     "luxon": "^1.26.0",

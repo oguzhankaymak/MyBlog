@@ -1,14 +1,8 @@
-import React, { useState } from 'react'
 import { getMdxNode, getMdxPaths } from 'next-mdx/server'
 import { useHydrate } from 'next-mdx/client'
 import { mdxComponents } from '../../components/mdxComponents/mdx-componets'
-import Form from '../../components/form/form'
-import Comments from '../../components/comments/comments'
-import UseComment from '../../hooks/useComment'
 
 export default function PostPage({ post }) {
-  const [comments, loadingComments, onSubmit, text, setText] = UseComment()
-
   const content = useHydrate(post, {
     components: mdxComponents
   })
@@ -19,9 +13,6 @@ export default function PostPage({ post }) {
         <h1 className="text-4xl font-bold">{post.frontMatter.title}</h1>
         <div className="prose-xl mt-4">{content}</div>
       </article>
-
-      <Form onSubmit={onSubmit} text={text} setText={setText} />
-      <Comments comments={comments} loading={loadingComments} />
     </div>
   )
 }
